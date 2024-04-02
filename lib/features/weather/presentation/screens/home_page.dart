@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_app_flutter/core/helpers/text_style_helper.dart';
 import 'package:weather_app_flutter/core/router/app_router.dart';
-import 'package:weather_app_flutter/features/bloc/weather_bloc/weather_bloc.dart';
+import 'package:weather_app_flutter/features/weather/bloc/weather_bloc/weather_bloc.dart';
 import 'package:weather_app_flutter/features/widgets/bg_light.dart';
-import 'package:weather_app_flutter/features/widgets/main_info.dart';
-import 'package:weather_app_flutter/features/widgets/temp_info_card.dart';
-import 'package:weather_app_flutter/features/widgets/time_info_item.dart';
+import 'package:weather_app_flutter/features/weather/presentation/widgets/main_info.dart';
+import 'package:weather_app_flutter/features/weather/presentation/widgets/temp_info_card.dart';
+import 'package:weather_app_flutter/features/weather/presentation/widgets/time_info_item.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {

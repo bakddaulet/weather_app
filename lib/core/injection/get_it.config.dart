@@ -16,9 +16,9 @@ import '../../data/local/cache_ds.dart' as _i3;
 import '../../data/remote/weather_ds.dart' as _i5;
 import '../../domain/local_repository.dart' as _i4;
 import '../../domain/weather_repository.dart' as _i7;
-import '../../features/bloc/weather_bloc/select_city_bloc/select_city_bloc.dart'
+import '../../features/cities/bloc/select_city_bloc/select_city_bloc.dart'
     as _i8;
-import '../../features/bloc/weather_bloc/weather_bloc.dart' as _i9;
+import '../../features/weather/bloc/weather_bloc/weather_bloc.dart' as _i9;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt

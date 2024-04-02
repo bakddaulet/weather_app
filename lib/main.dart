@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:weather_app_flutter/core/helpers/colors_helpers.dart';
 import 'package:weather_app_flutter/core/injection/get_it.dart';
 import 'package:weather_app_flutter/core/router/app_router.dart';
-import 'package:weather_app_flutter/features/bloc/weather_bloc/select_city_bloc/select_city_bloc.dart';
-import 'package:weather_app_flutter/features/bloc/weather_bloc/weather_bloc.dart';
+import 'package:weather_app_flutter/features/cities/bloc/select_city_bloc/select_city_bloc.dart';
+import 'package:weather_app_flutter/features/weather/bloc/weather_bloc/weather_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +44,7 @@ class WeatherApp extends StatelessWidget {
           routerDelegate: _appRouter.delegate(),
           title: 'Weather_app',
           theme: ThemeData(
+            backgroundColor: AppColors.black,
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: false,
           ),

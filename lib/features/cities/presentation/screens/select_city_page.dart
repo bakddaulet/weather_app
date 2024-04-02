@@ -2,9 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_app_flutter/core/helpers/colors_helpers.dart';
 import 'package:weather_app_flutter/core/helpers/text_style_helper.dart';
-import 'package:weather_app_flutter/features/bloc/weather_bloc/select_city_bloc/select_city_bloc.dart';
-import 'package:weather_app_flutter/features/bloc/weather_bloc/weather_bloc.dart';
+import 'package:weather_app_flutter/features/cities/bloc/select_city_bloc/select_city_bloc.dart';
+import 'package:weather_app_flutter/features/weather/bloc/weather_bloc/weather_bloc.dart';
 import 'package:weather_app_flutter/features/widgets/bg_light.dart';
 
 @RoutePage()
@@ -37,13 +38,13 @@ class _SelectCityScreenState extends State<SelectCityScreen> {
             child: Container(
               decoration: BoxDecoration(
                 color:
-                    Colors.black.withOpacity(0.5), // Полупрозрачный черный цвет
+                    AppColors.black.withOpacity(0.5), // Полупрозрачный черный цвет
                 shape: BoxShape.circle, // Круглая форма контейнера
               ),
               child: Center(
                 child: Icon(
                   Icons.arrow_back,
-                  color: Colors.white,
+                  color: AppColors.white,
                   size: 24.r,
                 ),
               ),
@@ -51,7 +52,7 @@ class _SelectCityScreenState extends State<SelectCityScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.black,
       body: BlocConsumer<SelectCityBloc, SelectCityState>(
         listener: (context, state) {
           if (state is SelectCityLoaded) {
