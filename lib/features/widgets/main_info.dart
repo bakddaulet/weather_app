@@ -32,6 +32,6 @@ class MainInfo extends StatelessWidget {
       ),
     );
 
-    ;
+    
   }
 }

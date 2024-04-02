@@ -33,10 +33,9 @@ class TimeInfoCard extends StatelessWidget {
             ),
             SizedBox(height: 3.r),
             Text(
-               DateFormat()
-                                              .add_jm()
-                                              .format(time),
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+              DateFormat().add_jm().format(time),
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.w700),
             ),
           ],
         ),

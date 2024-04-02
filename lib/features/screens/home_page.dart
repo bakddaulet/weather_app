@@ -1,12 +1,9 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_app_flutter/core/helpers/text_style_helper.dart';
+import 'package:weather_app_flutter/core/router/app_router.dart';
 import 'package:weather_app_flutter/features/bloc/weather_bloc/weather_bloc.dart';
 import 'package:weather_app_flutter/features/widgets/bg_light.dart';
 import 'package:weather_app_flutter/features/widgets/main_info.dart';
@@ -51,33 +48,47 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        systemOverlayStyle:
-            const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, 1.2 * kToolbarHeight, 40, 20),
+        padding: const EdgeInsets.fromLTRB(40, 1.2 * kToolbarHeight, 40, 20).r,
         child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: 1.sh,
             child: BgLight(child: BlocBuilder<WeatherBloc, WeatherState>(
-              builder: (context, state) {
+              builder: (context1, state) {
                 if (state is WeatherSuccess) {
                   return SizedBox(
                     width: 1.sw,
                     height: 1.sh,
                     child: RefreshIndicator.adaptive(
                       color: Colors.white,
-                      onRefresh: () async {},
+                      onRefresh: () async {
+                        BlocProvider.of<WeatherBloc>(context)
+                            .add(FetchWeather());
+                      },
                       child: SingleChildScrollView(
                         padding: EdgeInsets.only(bottom: 200.r),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '📍 ${state.weather.areaName}',
-                              style: ts(CustomTextStyles.s14w500),
-                            ),
                             SizedBox(height: 8.r),
-                            getWeatherIcon(state.weather.weatherConditionCode!),
+                            InkWell(
+                                onTap: () {
+                                  print('salam');
+                                },
+                                child: getWeatherIcon(
+                                    state.weather.weatherConditionCode!)),
+                            Center(
+                              child: InkWell(
+                                onTap: () {
+                                  context1.router.push(const SelectCityRoute());
+                                },
+                                child: Text(
+                                  '📍 ${state.weather.areaName}',
+                                  style: ts(CustomTextStyles.s14w500),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
                             MainInfo(
                               temperature: state.weather.temperature?.celsius,
                               weather: state.weather.weatherMain,
@@ -97,9 +108,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     time: state.weather.sunset!),
                               ],
                             ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5.0),
-                              child: Divider(
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 5.0).r,
+                              child: const Divider(
                                 color: Colors.grey,
                               ),
                             ),
@@ -122,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 } else {
-                  return Container();
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  );
                 }
               },
             ))),

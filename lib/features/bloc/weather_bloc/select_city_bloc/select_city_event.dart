@@ -6,3 +6,11 @@ sealed class SelectCityEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetCities extends SelectCityEvent {}
+
+class SelectCity extends SelectCityEvent {
+  final String city;
+
+  const SelectCity({required this.city});
+}
