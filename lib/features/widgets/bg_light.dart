@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_app_flutter/core/helpers/colors_helpers.dart';
 
 class BgLight extends StatelessWidget {
   const BgLight({super.key, required this.child});
@@ -16,7 +17,7 @@ class BgLight extends StatelessWidget {
           height: 300.r,
           width: 300.r,
           decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Colors.deepPurple),
+              shape: BoxShape.circle, color: AppColors.purple),
         ),
       ),
       Align(
@@ -25,7 +26,7 @@ class BgLight extends StatelessWidget {
           height: 300.r,
           width: 300.r,
           decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Color(0xFF673AB7)),
+              shape: BoxShape.circle, color: AppColors.purple),
         ),
       ),
       Align(

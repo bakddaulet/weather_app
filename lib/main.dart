@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_app_flutter/core/helpers/colors_helpers.dart';
 import 'package:weather_app_flutter/core/injection/get_it.dart';
 import 'package:weather_app_flutter/core/router/app_router.dart';
-import 'package:weather_app_flutter/features/cities/bloc/select_city_bloc/select_city_bloc.dart';
-import 'package:weather_app_flutter/features/weather/bloc/weather_bloc/weather_bloc.dart';
+import 'package:weather_app_flutter/features/widgets/app_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +16,7 @@ Future<void> main() async {
 
 class WeatherApp extends StatelessWidget {
   WeatherApp({super.key});
-  final _appRouter = AppRouter();
+  final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +24,7 @@ class WeatherApp extends StatelessWidget {
       minTextAdapt: true,
       useInheritedMediaQuery: true,
       designSize: const Size(360, 800),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<WeatherBloc>(
-            create: (BuildContext context) =>
-                getIt<WeatherBloc>()..add(const FetchWeather()),
-                
-          ),
-          BlocProvider<SelectCityBloc>(
-            create: (BuildContext context) =>
-                getIt<SelectCityBloc>()..add( GetCities()),
-                
-          ),
-        ],
+      child: GlobalBloc(
         child: MaterialApp.router(
           routeInformationParser: _appRouter.defaultRouteParser(),
           routerDelegate: _appRouter.delegate(),

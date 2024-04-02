@@ -1,16 +1,27 @@
 # weather_app_flutter
 
-A new Flutter project.
+Weather_app project
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Инструкция по запуску - flutter clean && flutter pub get && flutter run
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+В проекте чистая архитектура, состоящие из data,domain,bloc,view (usecase решил не использовать в угоду времени и малого проекта)
+Стейт менеджмет - чистый BloC с использованием Equitable
+Для локального хранилища решил использовать SharedPrefrence
+Для работы с api - Dio
+Для DI - GetIt
+Для роута - AutoRoute
+Для максимальной адаптивности использовал библиотеку - ScreenUtil
+Кодогенерация - build runner 
+
+
+
+
+
+
+Версия флаттера - 3.16.9
+Версия дарт- 3.2.6

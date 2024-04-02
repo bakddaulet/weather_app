@@ -7,7 +7,7 @@ abstract class WeatherRemoteDs {
 }
 
 @LazySingleton(as: WeatherRemoteDs)
-class WeaterRemoteDsImpl extends WeatherRemoteDs {
+class WeaterRemoteDsImpl implements WeatherRemoteDs {
     final Dio _dio;
 
   WeaterRemoteDsImpl({required Dio dio}) : _dio = dio;

@@ -14,6 +14,6 @@ class WeatherRepositoryImpl implements WeatherRemoteRepository {
 
   @override
   Future<Weather> getWeather({required String cityName}) {
-    return ds.getWeather(cityName: cityName); // Forward the call to the remote data source
+    return ds.getWeather(cityName: cityName); 
   }
 }

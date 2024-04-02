@@ -7,7 +7,7 @@ abstract class WeatherLocalDs {
 }
 
 @LazySingleton(as: WeatherLocalDs)
-class WeatherLocalDsImpl extends WeatherLocalDs {
+class WeatherLocalDsImpl implements WeatherLocalDs {
   static const _keyCity = 'city';
 
   @override

@@ -2,13 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_app_flutter/core/helpers/colors_helpers.dart';
 import 'package:weather_app_flutter/core/helpers/text_style_helper.dart';
 import 'package:weather_app_flutter/core/router/app_router.dart';
 import 'package:weather_app_flutter/features/weather/bloc/weather_bloc/weather_bloc.dart';
-import 'package:weather_app_flutter/features/widgets/bg_light.dart';
 import 'package:weather_app_flutter/features/weather/presentation/widgets/main_info.dart';
 import 'package:weather_app_flutter/features/weather/presentation/widgets/temp_info_card.dart';
 import 'package:weather_app_flutter/features/weather/presentation/widgets/time_info_item.dart';
+import 'package:weather_app_flutter/features/weather/presentation/widgets/weather_icon.dart';
+import 'package:weather_app_flutter/features/widgets/app_loading_widget.dart';
+import 'package:weather_app_flutter/features/widgets/bg_light.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -19,27 +22,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Widget getWeatherIcon(int code) {
-    switch (code) {
-      case >= 200 && < 300:
-        return Image.asset('assets/1.png');
-      case >= 300 && < 400:
-        return Image.asset('assets/images/2.png');
-      case >= 500 && < 600:
-        return Image.asset('assets/images/3.png');
-      case >= 600 && < 700:
-        return Image.asset('assets/images/4.png');
-      case >= 700 && < 800:
-        return Image.asset('assets/images/5.png');
-      case == 800:
-        return Image.asset('assets/images/6.png');
-      case > 800 && <= 804:
-        return Image.asset('assets/images/7.png');
-      default:
-        return Image.asset('assets/images/7.png');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 1.sw,
                     height: 1.sh,
                     child: RefreshIndicator.adaptive(
-                      color: Colors.white,
+                      color: AppColors.purple,
                       onRefresh: () async {
                         BlocProvider.of<WeatherBloc>(context)
                             .add(FetchWeather());
@@ -71,12 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 8.r),
-                            InkWell(
-                                onTap: () {
-                                  print('salam');
-                                },
-                                child: getWeatherIcon(
-                                    state.weather.weatherConditionCode!)),
+                            WeatherIcon(
+                                code: state.weather.weatherConditionCode!),
                             Center(
                               child: InkWell(
                                 onTap: () {
@@ -112,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 5.0).r,
                               child: const Divider(
-                                color: Colors.grey,
+                                color: AppColors.grey,
                               ),
                             ),
                             Row(
@@ -134,9 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 } else {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
+                  return const AppLoadingWidget();
                 }
               },
             ))),
